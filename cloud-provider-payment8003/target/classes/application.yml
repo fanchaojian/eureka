@@ -1,0 +1,36 @@
+server:
+  port: 8003
+
+#应用名称
+spring:
+  application:
+    #重要，入住注册中心注册唯一标记
+    name: cloud-payment-service
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url:  jdbc:mysql://localhost:3306/springcloud?useUnicode=true&characterEncoding=utf-8&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: root
+    password: 999520
+
+#eureka相关
+eureka:
+  client:
+    #表示是否将机子注册进eurekaServer
+    register-with-eureka: true
+    #是否从eurekaServer抓取已有的注册信息
+    fetch-registry: true
+    service-url:
+      #defaultZone:  http://localhost:7001/eureka #单机版eureka配置
+      defaultZone:  http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka       #eureka集群版配置
+
+  #actuator微服务信息完善
+  #更改提供者服务名，如本机localhost:8080/xxxx   127.0.0.1:8080/xxx 更改为payment8003
+  instance:
+    instance-id: payment8003
+    prefer-ip-address: true #访问路劲可以显示ip地址
+#mybatis相关
+#设置mapper映射文件位置
+#配置实体别名所在包
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.fanchaojian.springcloud.entity

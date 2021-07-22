@@ -1,0 +1,22 @@
+server:
+  port: 8004
+
+
+#应用名称-----注册zookeeper到注册中心名称
+spring:
+  application:
+    #重要，入住注册中心注册唯一标记
+    name: cloud-provider-payment
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url:  jdbc:mysql://localhost:3306/springcloud?useUnicode=true&characterEncoding=utf-8&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: root
+    password: 999520
+
+  #配置连接zookeeper
+  cloud:
+    zookeeper:
+      connect-string: 192.168.206.129:2181,192.168.206.129:2182,192.168.206.129:2183
+
+

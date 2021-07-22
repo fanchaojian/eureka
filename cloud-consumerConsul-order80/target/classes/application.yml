@@ -1,0 +1,24 @@
+server:
+  port: 7081
+
+
+#应用名称-----注册zookeeper到注册中心名称
+spring:
+  application:
+    #重要，入住注册中心注册唯一标记
+    name: consul-consumer-order
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url:  jdbc:mysql://localhost:3306/springcloud?useUnicode=true&characterEncoding=utf-8&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: root
+    password: 999520
+
+  #配置连接consul
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        service-name: ${spring.application.name}
+

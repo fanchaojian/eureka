@@ -39,4 +39,15 @@ public class PaymentController {
         Payment pm = paymentService.getPaymentById(id);
         return new CommonResult<>(200,"查找数据成功，serverPort："+serverPort,pm) ;
     }
+
+    //feign 超时测试
+    @GetMapping("/payment/feign/timeout")
+    public String paymentFeignTimeout(){
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return serverPort.toString();
+    }
 }
